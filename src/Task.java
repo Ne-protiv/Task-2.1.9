@@ -1,9 +1,7 @@
-import java.util.Objects;
-
 public class Task {
     public static void main(String[] args) {
-        ComplexNumber a = new ComplexNumber(2.2, 0);
-        ComplexNumber b = new ComplexNumber(2.2, 0);
+        ComplexNumber a = new ComplexNumber(2.4, 1.3);
+        ComplexNumber b = new ComplexNumber(2.4, -1.3);
         boolean x = a.equals(b);
         System.out.println(x);
         System.out.println(a.hashCode());
@@ -31,7 +29,7 @@ public class Task {
         }
 
         public boolean equals(ComplexNumber b) {
-            return Objects.equals(im, b.getIm()) && Objects.equals(re, b.getRe());
+            return im == b.getIm() && re == b.getRe();
         }
 
         public int hashCode() {
@@ -39,11 +37,17 @@ public class Task {
             long imHash = Double.doubleToLongBits(im);
             int reResult = Long.hashCode(reHash);
             int imResult = Long.hashCode(imHash);
-            return 2 * reResult + imResult;
+            int x = 13;
+            int y = 6;
+            if (re < 0) {
+                x = 19;
+            }
+            if (im < 0) {
+                y = 14;
+            }
+            return x * reResult + y * imResult;
         }
     }
-
-
 }
 
 
