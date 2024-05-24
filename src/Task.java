@@ -1,7 +1,7 @@
 public class Task {
     public static void main(String[] args) {
-        ComplexNumber a = new ComplexNumber(2.4, 1.3);
-        ComplexNumber b = new ComplexNumber(2.4, -1.3);
+        ComplexNumber a = new ComplexNumber(1, 1.3);
+        ComplexNumber b = new ComplexNumber(-1, -1.3);
         boolean x = a.equals(b);
         System.out.println(x);
         System.out.println(a.hashCode());
@@ -33,19 +33,14 @@ public class Task {
         }
 
         public int hashCode() {
+            int total = 31;
             long reHash = Double.doubleToLongBits(re);
             long imHash = Double.doubleToLongBits(im);
             int reResult = Long.hashCode(reHash);
             int imResult = Long.hashCode(imHash);
-            int x = 13;
-            int y = 6;
-            if (re < 0) {
-                x = 19;
-            }
-            if (im < 0) {
-                y = 14;
-            }
-            return x * reResult + y * imResult;
+            total = 31 * total + reResult;
+            total = 31 * total + imResult;
+            return total;
         }
     }
 }
