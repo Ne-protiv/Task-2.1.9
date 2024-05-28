@@ -1,7 +1,7 @@
 public class Task {
     public static void main(String[] args) {
-        ComplexNumber a = new ComplexNumber(1, 1.3);
-        ComplexNumber b = new ComplexNumber(-1, -1.3);
+        ComplexNumber a = new ComplexNumber(2, 2);
+        ComplexNumber b = new ComplexNumber(2, 2);
         boolean x = a.equals(b);
         System.out.println(x);
         System.out.println(a.hashCode());
@@ -28,9 +28,19 @@ public class Task {
             return im;
         }
 
-        public boolean equals(ComplexNumber b) {
-            return im == b.getIm() && re == b.getRe();
+
+        public boolean equals(Object b) {
+            if (b == this) {
+                return true;
+            }
+
+            if (b.getClass() != this.getClass()) {
+                return false;
+            }
+            ComplexNumber c = (ComplexNumber) b;
+            return Double.compare(re, c.getRe()) == 0 && Double.compare(im, c.getIm()) == 0;
         }
+
 
         public int hashCode() {
             int total = 31;
@@ -44,6 +54,7 @@ public class Task {
         }
     }
 }
+
 
 
 
